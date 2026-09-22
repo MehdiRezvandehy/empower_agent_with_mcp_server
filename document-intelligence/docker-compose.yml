@@ -1,0 +1,39 @@
+services:
+
+  # ==========================================================
+  # STREAMLIT APPLICATION
+  # ==========================================================
+
+  streamlit:
+
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+
+    container_name: document-intelligence-app
+
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      - mcp-server
+
+
+  # ==========================================================
+  # LOCAL MCP SERVER
+  # ==========================================================
+
+  mcp-server:
+
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+
+    container_name: document-search-mcp
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      # Windows host directory -> container
+      - "D:/Papers:/data"
