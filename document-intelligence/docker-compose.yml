@@ -18,6 +18,11 @@ services:
     depends_on:
       - mcp-server
 
+    volumes:
+      - "C:/:/host/C"
+      - "D:/:/host/D"
+      - "E:/:/host/E"
+
 
   # ==========================================================
   # LOCAL MCP SERVER
@@ -35,5 +40,6 @@ services:
       - "8000:8000"
 
     volumes:
-      # Windows host directory -> container
-      - "D:/Papers:/data"
+      - "C:/:/host/C"
+      - "D:/:/host/D"
+      - "E:/:/host/E"

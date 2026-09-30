@@ -257,6 +257,12 @@ if mcp_mode == "Local MCP":
                 # ====================================================
                 # MCP SEARCH FUNCTION
                 # ====================================================
+                
+                # Mount the whole Windows drives into Docker
+                from pathlib import PureWindowsPath
+                p = PureWindowsPath(directory)
+                drive = p.drive[0].upper()
+                directory = f"/host/{drive}/" + "/".join(p.parts[1:])
 
                 async def search_documents():
 
@@ -813,10 +819,8 @@ if mcp_mode == "Local MCP":
     
     rag_directory = st.text_input(
         "RAG Directory",
-        placeholder=r"D:\Papers",
-        key="rag_directory"
+        placeholder=r"D:\All Papers"
     )
-    
     
     #
     # ============================================================
@@ -1108,6 +1112,12 @@ if mcp_mode == "Local MCP":
                 # STEP 1 — READ DIRECTORY
                 # =================================================
     
+                # Mount the whole Windows drives into Docker
+                from pathlib import PureWindowsPath
+                p = PureWindowsPath(rag_directory)
+                drive = p.drive[0].upper()
+                rag_directory = f"/host/{drive}/" + "/".join(p.parts[1:])
+
                 with st.spinner(
                     "📂 Reading documents..."
                 ):

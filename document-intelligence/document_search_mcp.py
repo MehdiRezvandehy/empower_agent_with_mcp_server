@@ -546,6 +546,7 @@ def search_documents(
 if __name__ == "__main__":
     mcp.settings.host = "0.0.0.0"
     mcp.settings.port = 8000
+    mcp.settings.transport_security.allowed_hosts = ["mcp-server:8000"]
 
     mcp.run(
         transport="streamable-http"
