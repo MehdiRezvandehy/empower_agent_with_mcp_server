@@ -17,6 +17,7 @@ services:
 
     depends_on:
       - mcp-server
+      - rag-server
 
     volumes:
       - "C:/:/host/C"
@@ -32,9 +33,8 @@ services:
 
     build:
       context: .
-      dockerfile: Dockerfile.mcp
-
-    container_name: document-search-mcp
+      dockerfile: Dockerfile.doc_search.rag
+    command: python document_search_mcp.py
 
     ports:
       - "8000:8000"
@@ -43,3 +43,20 @@ services:
       - "C:/:/host/C"
       - "D:/:/host/D"
       - "E:/:/host/E"
+
+  rag-server:
+
+    build:
+      context: .
+      dockerfile: Dockerfile.doc_search.rag
+    command: python rag_mcp.py
+
+
+    ports:
+      - "8001:8001"
+
+    volumes:
+      - "C:/:/host/C"
+      - "D:/:/host/D"
+      - "E:/:/host/E"
+
