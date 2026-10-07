@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application
 COPY app.py .
-COPY document_search_mcp.py .
+
 
 # Streamlit port
 EXPOSE 8501
